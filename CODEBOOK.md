@@ -30,6 +30,7 @@ Week 1 lecture "Components of Tidy Data" and Wickham, "Tidy Data" define tidy da
 1. Each variable you measure should be in one column.
 2. Each different observation of that variable should be in a different row.
 3. There should be one table for each "kind" of variable.
+
 The resulting data file from the run_analysis.R script meets all criteria in the above definition of tidy data. Variables are ordered in columns. These variables are subject, activity type, and sensor readings. Each different observation is defined as the sensor data from one subject during one activity type. Each row in the output of run_analysis.R contains the subject identity, the type of activity during the observation, and the mean of the sensor data during that particular activity from a that specific subject. The data is formatted as follows:
 
 Subject | Activity   | Sensor Data 1... |
