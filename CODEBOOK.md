@@ -24,18 +24,20 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 7. The resulting dataframe from the cast function in step 6 contains averages of the mean and standard deviation variables broken down by subject and activity type. This dataframe is written to a csv file called "tidy_data.txt" in the working directory of R. Resulting data is a "wide" tidy table where each row is an observation of a test subject performing one of six activities. This format can be easily reshaped for various analysis in R or imported into spreadsheet software.
 
 ##TIDY DATA FORMAT
+
 Week 1 lecture "Components of Tidy Data" and Wickham, "Tidy Data" define tidy data as meeting three criteria.
-	1. Each variable you measure should be in one column.
-	2. Each different observation of that variable should be in a different row.
-	3. There should be one table for each "kind" of variable.
+
+1. Each variable you measure should be in one column.
+2. Each different observation of that variable should be in a different row.
+3. There should be one table for each "kind" of variable.
 The resulting data file from the run_analysis.R script meets all criteria in the above definition of tidy data. Variables are ordered in columns. These variables are subject, activity type, and sensor readings. Each different observation is defined as the sensor data from one subject during one activity type. Each row in the output of run_analysis.R contains the subject identity, the type of activity during the observation, and the mean of the sensor data during that particular activity from a that specific subject. The data is formatted as follows:
 
-Subject	Activity	Sensor Data 1...
-   1     WALKING      0.34343
-   1	 SITTING      0.00222
-   2	 WALKING	  0.23944
-   2	 SITTING	  0.00202
-   etc.
+Subject | Activity   | Sensor Data 1... |
+-------- | ----------  | --------------- |
+   1  |   WALKING   |   0.34343 |
+   1 | SITTING   |   0.00222 |
+   2 | WALKING	|  0.23944 |
+   2 | SITTING	|  0.00202 |
 
  The data in this format can be easily imported and manipulated in either R or spreadsheets for further analysis.
  
