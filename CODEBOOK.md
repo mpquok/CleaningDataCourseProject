@@ -19,8 +19,8 @@ http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartpho
 3. The data frames from step do not contain column labels. Column 2 of the features.txt dataframe is converted to character vector and concatenated to a character vectow containing c("subject, "activity") to create a character vector of column headings for the data frames in step 2. These vectors are then defined as the column headings. At this point, the data frames now contain subject, activity, sensor data, and have human friendly column headings.
 4. The test and train datasets from step 3 are concatenated together by rows (rbind) to create one large dataset. This works as data columns are identical in both sets. The resulting single data frame contains both test and train data with subject, activity, and sensor data.
 4. The codebook of the UCI HAR Dataset defines data containing either a mean or standard deviation as having the strings "mean()" and "std()" in the colmn heading. The script selects only columns containing the strings "mean()" and "std()" in the column headers to create a new dataframe with only the relevant data which reduces the data frame from 563 columns to 68. Expanded column headers are applied to make the data more readable.
-5. The reshape2 library is used to melt the dataframe from step 4 using subject ID and activity type as ID's. All other columns are identified as variables in the melt() function.
-6. The molten data rame is the cast as a data frame ordered by subject ID, then activity type, and finally variable. Mean is the function applied in the cast() function to the data.
+5. The reshape2 library is used to melt the dataframe from step 4 using subject ID and activity type as ID's. All other columns are identified as variables in the melt() function. At this point, each row is an observation containing a subject id, activity type, and sensor data. For each subject/activity type there are multiple readings of each sensor data variable. 
+6. The mean of the multiple sensor readings for each subject/activity must be calculated. To do this, the molten data rame is the cast as a data frame ordered by subject ID, then activity type, and finally variable. Mean is the function applied in the cast() function to the data.
 7. The resulting dataframe from the cast function in step 6 contains averages of the mean and standard deviation variables broken down by subject and activity type. This dataframe is written to a csv file called "tidy_data.txt" in the working directory of R. Resulting data is a "wide" tidy table where each row is an observation of a test subject performing one of six activities. This format can be easily reshaped for various analysis in R or imported into spreadsheet software.
 
 ##TIDY DATA FORMAT
@@ -43,6 +43,16 @@ Subject | Activity   | Sensor Data 1... |
  The data in this format can be easily imported and manipulated in either R or spreadsheets for further analysis.
  
 ##VARIABLE DEFINITIONS
+
+See "features.info_txt" in the raw dataset for additional information on all variables except subject.number and activity.type. Names in "feature_info.txt" were expanded in the "tidy_data.txt" output as follows for additional readability:
+
+* "Acc" was expanded to Acceleration
+* "t" was expanded to Time.Domain
+* "f" was expanded to Frequency.Domain
+* "gryo" was expanded to Gyroscope
+* X,Y,Z were expanded to X-Axis, Y-Axis, and Z-Axis respectively
+
+For example, "Time.Domain.Body.Acceleration" in the original dataset was expanded to "Time.Domain.Body.Acceleration-mean-Y-axis" for additional readability.
 
 ###subject.number
 Data Type: int
